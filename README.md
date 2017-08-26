@@ -1,5 +1,5 @@
 # BeepBox Modded (or MeepMox)
-> v1.7.1
+> v1.8
 
 The best thing since BeepBox!
 ## About

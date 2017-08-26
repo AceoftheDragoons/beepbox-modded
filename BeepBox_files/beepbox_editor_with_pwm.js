@@ -143,7 +143,7 @@ var beepbox;
         }
         return Music;
     }());
-    Music.scaleNames = ["easy :)", "easy :(", "island :)", "island :(", "blues :)", "blues :(", "normal :)", "normal :(", "romani :)", "romani :(", "enigma", "expert", "monotonic c", "monotonic g", "beep bishop", "challenge", "challenge+", "enigma+"];
+    Music.scaleNames = ["easy :)", "easy :(", "island :)", "island :(", "blues :)", "blues :(", "normal :)", "normal :(", "romani :)", "romani :(", "enigma", "expert", "monotonic c", "ditonic c"];
     Music.scaleFlags = [
         [true, false, true, false, true, false, false, true, false, true, false, false],
         [true, false, false, true, false, true, false, true, false, false, true, false],
@@ -163,6 +163,7 @@ var beepbox;
 		[false, true, true, true, true, true, true, true, true, true, true, true],
 		[false, true, true, true, true, true, true, false, true, true, true, true],
 		[true, true, false, true, true, false, true, true, false, true, true, false],
+		[true, false, false, false, false, false, false, true, false, false, false, false],
     ];
     Music.pianoScaleFlags = [true, false, true, false, true, true, false, true, false, true, false, true];
     Music.blackKeyNameParents = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
@@ -184,8 +185,8 @@ var beepbox;
     Music.partCounts = [3, 4, 16, 12, 9, 6, 5, 50];
 Music.waveNames = ["triangle", "square", "pulse wide", "pulse narrow", "sawtooth", "double saw", "double pulse", "spiky", "plateau", "glitch", "10% pulse", "sunsoft bass", "loud pulse", "sax", "guitar", "sine", "atari bass", "atari pulse"];
     Music.waveVolumes = [1.0, 0.5, 0.5, 0.5, 0.65, 0.5, 0.4, 0.4, 0.94, 0.5, 0.5, 1.0, 0.6, 0.2, 0.5, 1.0, 1.0, 1.0];
-    Music.drumNames = ["retro", "white"];
-    Music.drumVolumes = [0.25, 1.0];
+    Music.drumNames = ["retro", "white","periodic","detuned periodic"];
+    Music.drumVolumes = [0.25, 1.0,1.0,0.75];
     Music.filterNames = ["sustain sharp", "sustain medium", "sustain soft", "decay sharp", "decay medium", "decay soft", "ring", "muffled", "submerged", "shift"];
     Music.filterBases = [2.0, 3.5, 5.0, 1.0, 2.5, 4.0, -1.0, 4.0, 6.0, 0.0];
     Music.filterDecays = [0.0, 0.0, 0.0, 10.0, 7.0, 4.0, 0.2, 0.2, 0.3, 0.0];
@@ -1245,7 +1246,7 @@ Music.waveNames = ["triangle", "square", "pulse wide", "pulse narrow", "sawtooth
 				new Float64Array([1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]),
 				new Float64Array([0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]),
 				];
-            this._drumWaves = [new Float32Array(32767), new Float32Array(32767)];
+            this._drumWaves = [new Float32Array(32767), new Float32Array(32767), new Float32Array(32767), new Float32Array(32767)];
             this.song = null;
             this.stutterPressed = false;
             this.pianoPressed = false;
@@ -1309,6 +1310,28 @@ Music.waveNames = ["triangle", "square", "pulse wide", "pulse narrow", "sawtooth
                 else if (index == 1) {
                     for (var i = 0; i < 32767; i++) {
                         wave_2[i] = Math.random() * 2.0 - 1.0;
+                    }
+                }
+				else if (index == 2) {
+                    var drumBuffer = 1;
+                    for (var i = 0; i < 32767; i++) {
+                        wave_2[i] = (drumBuffer & 1) * 2.0 - 1.0;
+                        var newBuffer = drumBuffer >> 1;
+                        if (((drumBuffer + newBuffer) & 1) == 1) {
+                            newBuffer += 2 << 14;
+                        }
+                        drumBuffer = newBuffer;
+                    }
+                }
+				else if (index == 3) {
+                    var drumBuffer = 1;
+                    for (var i = 0; i < 32767; i++) {
+                        wave_2[i] = (drumBuffer & 1) * 2.0 - 1.0;
+                        var newBuffer = drumBuffer >> 1;
+                        if (((drumBuffer + newBuffer) & 1) == 1) {
+                            newBuffer += 4 << 14;
+                        }
+                        drumBuffer = newBuffer;
                     }
                 }
             }

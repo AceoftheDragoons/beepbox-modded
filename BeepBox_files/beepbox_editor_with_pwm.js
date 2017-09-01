@@ -143,7 +143,7 @@ var beepbox;
         }
         return Music;
     }());
-    Music.scaleNames = ["easy :)", "easy :(", "island :)", "island :(", "blues :)", "blues :(", "normal :)", "normal :(", "romani :)", "romani :(", "enigma", "expert", "monotonic c", "ditonic c"];
+    Music.scaleNames = ["easy :)", "easy :(", "island :)", "island :(", "blues :)", "blues :(", "normal :)", "normal :(", "romani :)", "romani :(", "enigma", "expert", "monotonic c", "monotonic g", "beep bishop", "challenge", "challenge+", "enigma+", "c and g"];
     Music.scaleFlags = [
         [true, false, true, false, true, false, false, true, false, true, false, false],
         [true, false, false, true, false, true, false, true, false, false, true, false],
@@ -6334,7 +6334,7 @@ var beepbox;
             this._exportButton = button({ style: "margin: 5px 0;", type: "button" }, [text("Export")]);
             this._scaleDropDown = buildOptions(select({ style: "width:9em;" }), beepbox.Music.scaleNames);
             this._keyDropDown = buildOptions(select({ style: "width:9em;" }), beepbox.Music.keyNames);
-            this._tempoSlider = input({ style: "width: 9em; margin: 0px;", type: "range", min: "0", max: "11", value: "7", step: "1" });
+            this._tempoSlider = input({ style: "width: 9em; margin: 0px;", type: "range", min: "0", max: "21", value: "7", step: "1" });
             this._reverbSlider = input({ style: "width: 9em; margin: 0px;", type: "range", min: "0", max: "3", value: "0", step: "1" });
 			this._riffSlider = input({ style: "width: 9em; margin: 0px;", type: "range", min: "0", max: "10", value: "7", step: "1" });
             this._partDropDown = buildOptions(select({ style: "width:9em;" }), beepbox.Music.partNames);

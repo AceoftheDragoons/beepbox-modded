@@ -182,7 +182,7 @@ var beepbox;
 	Music.waveNames = ["triangle", "square", "pulse wide", "pulse narrow", "sawtooth", "double saw", "double pulse", "spiky", "plateau", "glitch", "10% pulse", "sunsoft bass", "loud pulse", "deep pulse", "mild pulse", "sine", "atari bass", "atari pulse", "1% pulse"];
     Music.waveVolumes = [1.0, 0.5, 0.5, 0.5, 0.65, 0.5, 0.4, 0.4, 0.94, 0.5, 0.5, 1.0, 0.6, 0.2, 0.5, 1.0, 1.0, 1.0, 1.0];
     Music.drumNames = ["retro", "white","periodic","detuned periodic"];
-    Music.drumVolumes = [0.25, 1.0,1.0,0.75];
+    Music.drumVolumes = [0.25, 1.0, 1.0, 0.75];
     Music.filterNames = ["sustain sharp", "sustain medium", "sustain soft", "decay sharp", "decay medium", "decay soft", "ring", "muffled", "submerged", "shift"];
     Music.filterBases = [2.0, 3.5, 5.0, 1.0, 2.5, 4.0, -1.0, 4.0, 6.0, 0.0];
     Music.filterDecays = [0.0, 0.0, 0.0, 10.0, 7.0, 4.0, 0.2, 0.2, 0.3, 0.0];
